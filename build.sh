@@ -2,10 +2,11 @@
 
 docker build \
     -t local/aspnet:6.0 \
-    ./asp.net/6.0
+    -f aspnet.Dockerfile \
+    .
 
 docker build \
     -t local/aspnet:6.0-diag \
     --build-arg REGISTRY=local \
-    ./asp.net/6.0-diag
-
+    -f aspnet-diag.Dockerfile \
+    .
