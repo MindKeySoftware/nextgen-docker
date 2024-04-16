@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-bullseye-slim
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-bookworm-slim
 
 # Enable automatic creation of dumps when a process crashes
 ENV COMPlus_DbgEnableMiniDump="1"
