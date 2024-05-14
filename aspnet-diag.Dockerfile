@@ -1,4 +1,4 @@
-ARG REGISTRY
+ARG BASE
 
 FROM alpine as build
 
@@ -16,18 +16,20 @@ RUN mkdir /dotnettools/ \
     && chmod +x /dotnettools/dotnet-stack \
     && chmod +x /dotnettools/dotnet-sos
 
-FROM ${REGISTRY}/aspnet:6.0
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends openssh-server \ 
+FROM ${BASE}
+RUN apt update \
+    && apt install -y --no-install-recommends openssh-server \ 
     && echo "root:Docker!" | chpasswd \
-    && apt-get clean \ 
+    && apt clean autoclean \
+    && apt autoremove --yes \
     && rm -rf /var/lib/apt/lists
 
-COPY ./sshd_config /etc/ssh/
-COPY ./ssh_setup.sh /tmp/
+COPY ./ssh/sshd_config /etc/ssh/
+COPY ./ssh/ssh_setup.sh /tmp/
 
 RUN chmod +x /tmp/ssh_setup.sh \
     && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null) \
+    && rm /tmp/ssh_setup.sh \
     && echo "echo Starting SSH" >> /start.sh \
     && echo "service ssh start" >> /start.sh 
 

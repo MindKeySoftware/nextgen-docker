@@ -1,4 +1,6 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-bookworm-slim
+ARG VERSION=8.0-bookworm-slim
+
+FROM mcr.microsoft.com/dotnet/aspnet:${VERSION}
 
 # Enable automatic creation of dumps when a process crashes
 ENV COMPlus_DbgEnableMiniDump="1"
@@ -10,7 +12,6 @@ RUN echo "#! /bin/sh" >> /start.sh \
     && echo "mkdir -p \"$DUMP_DIR\"" >> /start.sh \
     && echo "chmod 777 \"$DUMP_DIR\"" >> /start.sh \
     && mkdir /app \
-    && adduser --disabled-password --home /home/app --gecos '' app && chown -R app /app \
     && chmod +x /start.sh
 
 # disable reload of configration on change
