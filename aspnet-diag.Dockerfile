@@ -17,11 +17,11 @@ RUN mkdir /dotnettools/ \
     && chmod +x /dotnettools/dotnet-sos
 
 FROM ${BASE}
-RUN apt update \
-    && apt install -y --no-install-recommends openssh-server \ 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssh-server \ 
     && echo "root:Docker!" | chpasswd \
-    && apt clean autoclean \
-    && apt autoremove --yes \
+    && apt-get clean autoclean \
+    && apt-get autoremove --yes \
     && rm -rf /var/lib/apt/lists
 
 COPY ./ssh/sshd_config /etc/ssh/
