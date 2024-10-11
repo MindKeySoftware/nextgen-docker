@@ -1,6 +1,6 @@
 ARG BASE
 
-FROM alpine as build
+FROM alpine AS build
 
 RUN mkdir /dotnettools/ \
     && wget -q -O /dotnettools/dotnet-counters https://aka.ms/dotnet-counters/linux-x64 \
