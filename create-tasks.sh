@@ -13,7 +13,7 @@ az acr task create \
     --registry "$REGISTRY" \
     --name build-aspnet-6-de \
     --image "aspnet:6.0-de" \
-    --file aspnet-de.Dockerfile \
+    --file 6.0/aspnet-de.Dockerfile \
     --context https://github.com/MindKeySoftware/nextgen-docker.git \
     --commit-trigger-enabled false \
     --arg BASE="$REGISTRY.azurecr.io/aspnet:6.0" \
@@ -52,7 +52,7 @@ az acr task create \
     --registry "$REGISTRY" \
     --name build-aspnet-8-de \
     --image "aspnet:8.0-de" \
-    --file aspnet-de.Dockerfile \
+    --file 8.0/aspnet-de.Dockerfile \
     --context https://github.com/MindKeySoftware/nextgen-docker.git \
     --commit-trigger-enabled false \
     --arg BASE="$REGISTRY.azurecr.io/aspnet:8.0" \
